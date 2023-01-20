@@ -14,6 +14,9 @@ function onReady() {
     // - Handle events that ->
     // - Updates state which is ->
     // - Rendered to the DOM
+   
+    setInterval(fungusGainHP, 1000)
+
 }
 
 let AP = 100
@@ -56,8 +59,17 @@ function attack() {
     render()
 }
 
+
+function fungusGainHP() {
+    if(HP < 50) {
+        HP++
+    }
+    render()
+}
+
 function render() {
     
+    // disabling weapons
     if(AP < 38){
         $('.dragon-blade').prop('disabled', true)
         console.log('Dragon Blade offline')
@@ -75,15 +87,17 @@ function render() {
         console.log('Arcane Sceptor offline')
     }
 
+    // changing HP and AP bar and number
     $(`.ap-text`).text(AP + ' AP')
     $(`.hp-text`).text(HP + ' HP')
     $(`#ap-meter`).val(AP)
     $(`#hp-meter`).val(HP)
 
+    // win
     if(HP === 0) {
         $(`.walk`).attr(`class`, `freaky-fungus ${fungusAnimation}`)
     }
-
+    // lose
     if(AP === 0) {
         $(`.walk`).attr(`class`, `freaky-fungus ${fungusAnimation}`)
     }
