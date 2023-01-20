@@ -61,7 +61,7 @@ function attack() {
 
 
 function fungusGainHP() {
-    if(HP < 50) {
+    if(HP < 50 && HP > 0) {
         HP++
     }
     render()
